@@ -75,9 +75,7 @@ function App() {
     if (selectedCulture.link)
       window.open(selectedCulture.link, '_blank');
   }
-  function About() {
-    return <h2>About</h2>;
-  }
+
   return (
     <ThemeProvider theme={theme}>
       <PageBodyStyled>
