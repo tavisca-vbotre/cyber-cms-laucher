@@ -5,11 +5,14 @@ import { PageBodyStyled, FormTitle, FormButton } from './App.styled';
 import { PageMainContainer, FormContainer, FormInnerContainer } from './Components/Container/Container.styled';
 import Header from './Components/Header';
 import Footer from './Components/Footer';
+import Profile from './Components/Profile';
+import Faq from './Components/Faq';
 import Select from './Components/Input/Select';
 import Button from './Components/Button/Button.styled';
 import clientsData from './config/data';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-const clientsList = clientsData.map(o => ({ 
+const clientsList = clientsData.map(o => ({
   key: o.key,
   value: o.value,
 }));
@@ -17,13 +20,13 @@ const clientsList = clientsData.map(o => ({
 const getCulturesList = (key) => {
   const selectedClient = clientsData.find(o => o.key === key);
   return selectedClient
-   ? selectedClient.cultures || []
-   : [];
+    ? selectedClient.cultures || []
+    : [];
 }
 
 function App() {
-  const [ culturesData, setCulturesData ] = useState(getCulturesList('CYBER'))
-  const [ state, setState ] = useState({
+  const [culturesData, setCulturesData] = useState(getCulturesList('CYBER'))
+  const [state, setState] = useState({
     client: {
       id: 'client',
       name: 'client',
@@ -41,7 +44,7 @@ function App() {
   })
 
   const onChange = (name, key, selectedValue) => {
-    if(name === 'client') {
+    if (name === 'client') {
       const _culturesList = getCulturesList(key)
       setCulturesData(_culturesList);
       setState({
@@ -69,41 +72,60 @@ function App() {
   const onSubmit = (e) => {
     e.preventDefault();
     const selectedCulture = culturesData.find(o => o.key === state.language.value);
-    if(selectedCulture.link)
+    if (selectedCulture.link)
       window.open(selectedCulture.link, '_blank');
   }
-
+  function About() {
+    return <h2>About</h2>;
+  }
   return (
     <ThemeProvider theme={theme}>
       <PageBodyStyled>
-        <Header/>
+        <Header />
+
         <PageMainContainer>
-          <FormContainer>
-            <FormInnerContainer
-              onSubmit={onSubmit}
-            >
-              <FormTitle>Welcome to Cyber</FormTitle>
-              <Select
-                onChange={onChange}
-                state={state.client}
-                options={clientsList}
-                errorMessage={''}
-              />
-              <Select
-                onChange={onChange}
-                state={state.language}
-                options={culturesData}
-                errorMessage={''}
-              />
-              <FormButton>
-                <Button>
-                  Go to cyber
-                </Button>
-              </FormButton>
-            </FormInnerContainer>
-          </FormContainer>
+          <Router>
+            <Switch>
+            <Route path="/profile">
+              <Profile></Profile>
+            </Route>
+            <Route path="/faq">
+              <Faq></Faq>
+            </Route>
+            <Route path="/">
+                <FormContainer>
+                  <FormInnerContainer
+                    onSubmit={onSubmit}
+                  >
+                    <FormTitle>Welcome to Cyber</FormTitle>
+                    <Select
+                      onChange={onChange}
+                      state={state.client}
+                      options={clientsList}
+                      errorMessage={''}
+                    />
+                    <Select
+                      onChange={onChange}
+                      state={state.language}
+                      options={culturesData}
+                      errorMessage={''}
+                    />
+                    <FormButton>
+                      <Button>
+                        Go to cyber
+                        </Button>
+                    </FormButton>
+                  </FormInnerContainer>
+                </FormContainer>
+              </Route>
+
+             
+            </Switch>
+
+          </Router>
+
         </PageMainContainer>
-        <Footer/>
+        <Footer />
       </PageBodyStyled>
     </ThemeProvider>
   );

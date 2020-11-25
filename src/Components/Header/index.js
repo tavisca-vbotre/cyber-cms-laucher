@@ -8,7 +8,7 @@ const Header = () => {
       <HeaderMainContainer >
           <HeaderContainer >
             <img
-                src={logo}
+                src="./assets/images/cyber-logo.png"
                 alt="logo"
             />
         </HeaderContainer>
