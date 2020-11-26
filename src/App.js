@@ -5,7 +5,6 @@ import { PageBodyStyled, FormTitle, FormButton } from './App.styled';
 import { PageMainContainer, FormContainer, FormInnerContainer } from './Components/Container/Container.styled';
 import Header from './Components/Header';
 import Footer from './Components/Footer';
-import Profile from './Components/Profile';
 import Faq from './Components/Faq';
 import Select from './Components/Input/Select';
 import Button from './Components/Button/Button.styled';
@@ -84,9 +83,6 @@ function App() {
         <PageMainContainer>
           <Router>
             <Switch>
-            <Route path="/profile">
-              <Profile></Profile>
-            </Route>
             <Route path="/faq">
               <Faq></Faq>
             </Route>
