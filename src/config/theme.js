@@ -1,6 +1,6 @@
 const baseColors = {
-    primaryColor: '#03267a',
-    primaryColorDarker: '#214785',
+    primaryColor: '#000',
+    primaryColorDarker: '#000',
   };
   
   const defaultThemeConfig = {
@@ -12,12 +12,12 @@ const baseColors = {
       primaryColorDarker: baseColors.primaryColorDarker,
       secondaryColor: '#97ACCF',
       secondaryColorLighter: '#e9f5ff',
-      backgroundColor: '#F4F7FD',
+      backgroundColor: '#377a6c',
       headerTxtColor: '#fff',
-      headerBackgroundColor: '#fff',
-      headerBackgroundDashColor: '#fff',
+      headerBackgroundColor: '#377a6c',
+      headerBackgroundDashColor: 'transparent',
       footerTxtColor: '#fff',
-      footerBackgroundColor: '#000',
+      footerBackgroundColor: '#f7f7f7',
       landingSectBgColor: 'linear-gradient(to bottom right, #0d2f7f, #0bd1ff)',
       primaryButtonColor: baseColors.primaryColor,
       primaryButtonDarkerColor: baseColors.primaryColorDarker,

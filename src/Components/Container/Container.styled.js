@@ -4,6 +4,7 @@ export const HeaderMainContainer = styled.div`
   position: absolute;
   z-index: 10;
   width: 100%;
+  box-sizing: border-box;
   top: 0;
   left: 0;
   display: flex;
@@ -13,7 +14,7 @@ export const HeaderMainContainer = styled.div`
   padding: 0 15px;
   height: 5em;
   box-shadow: 0 2px 13px -6px ${({ theme, boxShadow }) => theme.colors[boxShadow]};
-  background-color: ${({ theme, background }) => theme.colors[background]};
+  background-color: ${({ theme }) => theme.colors.headerBackgroundColor};
 `;
 
 export const PageMainContainer = styled.div`

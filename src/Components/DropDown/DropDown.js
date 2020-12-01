@@ -15,7 +15,7 @@ const DropDown = ({ head, children, style, onSelect, selected, id }) => {
   });
 
   const onClick = () => {
-    onSelect();
+    onSelect(id, !selected);
   };
   
 
