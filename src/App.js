@@ -3,9 +3,10 @@ import { ThemeProvider } from 'styled-components';
 import theme from './config/theme';
 import { PageBodyStyled, FormTitle, FormButton } from './App.styled';
 import { PageMainContainer, FormContainer, FormInnerContainer } from './Components/Container/Container.styled';
-import Header from './Components/Header';
 import Footer from './Components/Footer';
 import Faq from './Components/Faq';
+import Dashboard from './Components/Dashboard';
+
 
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
@@ -15,7 +16,6 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <PageBodyStyled>
-        <Header />
 
         <PageMainContainer>
           <Router>
@@ -24,7 +24,7 @@ function App() {
               <Faq></Faq>
             </Route>
             <Route path="/">
-                  
+                <Dashboard></Dashboard>
             </Route>
              
             </Switch>

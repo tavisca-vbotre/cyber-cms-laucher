@@ -5,6 +5,7 @@ import PageTitle from '../PageTitle/PageTitle';
 import DropDown from '../DropDown/DropDown';
 
 import { Stack, config} from '../../config/contentstack.config'
+import Header from '../../Components/Header';
 
 
 const Help = () => {
@@ -62,6 +63,7 @@ const Help = () => {
     .then((result) => {
       setContentDetails(result[0][0]);
       setSelected(!isLoading);
+      document.title = result[0][0].title
     })
     .catch((error) => {
       console.log(error)
@@ -81,7 +83,8 @@ const Help = () => {
   };
 
   return !isLoading && (
-      <HelpContainerStyled>
+      <HelpContainerStyled>      
+        <Header logoUrl={pageData.logo.url} showBanner={pageData.banner.show_banner_image}></Header>
         <PageTitle title={pageData.title1} subtitle={pageData.subtitle} />
           <div>                     
             {

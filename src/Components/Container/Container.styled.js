@@ -13,8 +13,8 @@ export const HeaderMainContainer = styled.div`
   margin-left: 0;
   padding: 0 15px;
   height: 5em;
-  box-shadow: 0 2px 13px -6px ${({ theme, boxShadow }) => theme.colors[boxShadow]};
-  background-color: ${({ theme }) => theme.colors.headerBackgroundColor};
+  box-shadow: 0 2px 13px -6px ${({ theme, boxShadow, showBanner }) => !showBanner? theme.colors[boxShadow] : "transparent"};
+  background-color: ${({ theme, showBanner }) => !showBanner ? theme.colors.headerBackgroundColor : "transparent"};
 `;
 
 export const PageMainContainer = styled.div`

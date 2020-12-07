@@ -1,0 +1,95 @@
+@import '../../../config/brandConfig/@{organisation}/variables.less';
+
+.threat-box {
+  &.add-detail-box {
+    display: flex;
+    flex-direction: column;
+
+    a {
+      flex: 1 1 auto;
+      display: flex;
+      flex-direction: column;
+      padding: 5px;
+
+      .add-detail-icon {
+        flex: 1 1 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
+}
+
+.alert-card-box {
+  padding: 15px 10px 12px;
+  margin: 0 10px;
+  color: #000000;
+  min-height: 185px;
+  border-radius: 4px;
+  box-shadow: 1px 0 7px 1px #edf0f2;
+  position: relative;
+  &.see-more {
+    background-color: @prim-button-bg;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 20px;
+    .see-more-detail {
+      color: white;
+      font-size: 20px;
+    }
+  }
+  &.low {
+    background-color: @low-risk-bg;
+  }
+  &.medium {
+    background-color: @med-risk-bg;
+  }
+  &.high {
+    background-color: @high-risk-bg;
+  }
+
+  .alert-icon {
+    float: right;
+    margin-top: 0px;
+    max-width: 70px;
+    img {
+      width: 100%;
+      max-height: 60px;
+      opacity: 0.6;
+    }
+  }
+  .card-details {
+    padding: 25px 0px;
+    .card-paragraph {
+      padding: 10px 0px;
+      position: relative;
+    }
+    .label {
+      font-size: 13px;
+    }
+    .data {
+      font-size: 15px;
+      font-weight: bold;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+  .card-footer {
+    color: #ffffff;
+    font-size: 13.7px;
+    position: absolute;
+    bottom: 10px;
+    .data {
+      font-weight: bold;
+    }
+  }
+}
+
+.icons-chevron-right-white {
+  display: inline-block;
+  margin-left: 15px;
+  vertical-align: middle;
+}

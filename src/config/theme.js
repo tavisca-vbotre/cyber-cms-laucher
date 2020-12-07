@@ -25,8 +25,8 @@ const baseColors = {
       lightColor: '#fff',
       transparent: 'transparent',
       disabled: {
-        buttonColorDisabled: 'rgba(48, 102, 190, 0.5)',
-        buttonColorDisabledBorder: 'rgba(48, 102, 190, 0.1)',
+        buttonColorDisabled: 'rgba(0, 0, 0, 0.3)',
+        buttonColorDisabledBorder: 'rgba(90, 195, 125, 0.1)',
       },
     },
     error: {
