@@ -11,48 +11,10 @@ import Header from '../../Components/Header';
 const Help = () => {
 
   const [isLoading, setSelected] = useState(true);
-  const [articleList, setAppDetails] = useState(null);
-  const [helpList, setHelpDetails] = useState(null);
-
   const [helpData, setHelpData] = useState([]);
   const [pageData, setContentDetails] = useState();
 
-  useEffect(getArticelList, []);
-  
-  useEffect(getHelpList, []);
 
-  function getArticelList(){
-      const ArticleListQuery = Stack.ContentType(config.articles).Query()
-      .language(config.locale)
-      .toJSON()
-      .find()
-      .then((result) => {
-        setAppDetails(result[0].sort((a, b) => {
-          return a.title - b.title;
-        }))
-        
-      })
-      .catch((error) => {
-        console.log(error)
-      });
-      
-  }
-  function getHelpList(){
-    var HelpListQuery = Stack.ContentType(config.help).Query()
-    .language(config.locale)
-    .toJSON()
-    .find()
-    .then((result) => {
-      setHelpDetails(result[0].sort((a, b) => {
-        return a.title - b.title;
-      }))
-      
-    })
-    .catch((error) => {
-      console.log(error)
-    });
-    
-}
   useEffect(getPageObject, []);
 
   function getPageObject(){
@@ -84,12 +46,12 @@ const Help = () => {
 
   return !isLoading && (
       <HelpContainerStyled>      
-        <Header logoUrl={pageData.logo.url} showBanner={pageData.banner.show_banner_image}></Header>
-        <PageTitle title={pageData.title1} subtitle={pageData.subtitle} />
+        <Header logoUrl={pageData.faqfooter.url} showBanner={false}></Header>
+        <PageTitle title={pageData.pageheading} subtitle={pageData.page_sub_heading} />
           <div>                     
             {
-              articleList && articleList.map((articleItem, idx) => {
-              const dataTab = helpData.find(tab => tab.id === articleItem.title);
+              pageData && pageData.article.map((articleItem, idx) => {
+              const dataTab = helpData.find(tab => tab.id === `article${idx}`);
                 return (
                   <React.Fragment>
                     { 
@@ -99,10 +61,10 @@ const Help = () => {
                     <DropDown
                       head={articleItem.question}
                       onSelect={onChange}
-                      id={articleItem.title}
+                      id={`article${idx}`}
                       selected={helpData && dataTab ? dataTab.value : false}
                     >
-                    {articleItem.answer}
+                    <div dangerouslySetInnerHTML={{ __html: articleItem.answer }} />
                   </DropDown>
                 </React.Fragment>
                 )  
@@ -112,8 +74,8 @@ const Help = () => {
         </div>
         <div>                     
             {
-              helpList && helpList.map((helpItem, idx) => {
-              const dataTab = helpData.find(tab => tab.id === helpItem.title);
+              pageData && pageData.help.map((helpItem, idx) => {
+              const dataTab = helpData.find(tab => tab.id === `help${idx}`);
                 return (
                   <React.Fragment>
                     { 
@@ -121,12 +83,12 @@ const Help = () => {
                       <HelpTitleStyle>{helpItem.section_title}</HelpTitleStyle>
                     }
                     <DropDown
-                      head={helpItem.question}
+                      head={helpItem.helpq}
                       onSelect={onChange}
-                      id={helpItem.title}
+                      id={`help${idx}`}
                       selected={helpData && dataTab ? dataTab.value : false}
                     >
-                    <div dangerouslySetInnerHTML={{ __html: helpItem.answer }} />
+                    <div dangerouslySetInnerHTML={{ __html: helpItem.rich_text_editor }} />
                     
                   </DropDown>
                 </React.Fragment>

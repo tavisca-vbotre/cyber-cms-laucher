@@ -6,11 +6,11 @@ const dashboardConfig = {
     locale: "no-no"
 }
 const config = {
-    pageData:"cxl_faq",
+    pageData:"fortumfaq",
     articles: "fortum_faq",
     help:"fortum_help",
     footer:"fortum_footer",
-    locale: "no-no"
+    locale: "en-us"
 }
 const config2 = {
     pageData:"cxl_faq",
