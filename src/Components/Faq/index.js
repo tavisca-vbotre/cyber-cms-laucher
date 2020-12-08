@@ -48,17 +48,19 @@ const Help = () => {
       <HelpContainerStyled>      
         <Header logoUrl={pageData.faqfooter.url} showBanner={false}></Header>
         <PageTitle title={pageData.pageheading} subtitle={pageData.page_sub_heading} />
-          <div>                     
-            {
-              pageData && pageData.article.map((articleItem, idx) => {
+         
+          <div>      
+            { 
+                pageData.articlegroup.sectiontitle && (
+                <HelpTitleStyle>{pageData.articlegroup.sectiontitle}</HelpTitleStyle>
+                )
+                }       
+            { 
+              pageData && pageData.articlegroup.articlelist.map((articleItem, idx) => {
               const dataTab = helpData.find(tab => tab.id === `article${idx}`);
                 return (
                   <React.Fragment>
-                    { 
-                      idx == 0 &&
-                      <HelpTitleStyle>{articleItem.section_title}</HelpTitleStyle>
-                    }
-                    <DropDown
+                  <DropDown
                       head={articleItem.question}
                       onSelect={onChange}
                       id={`article${idx}`}
@@ -72,23 +74,50 @@ const Help = () => {
               
             }
         </div>
-        <div>                     
+        <div>    
+            { 
+                pageData.helpgroup.sectiontitle && (
+                <HelpTitleStyle>{pageData.helpgroup.sectiontitle}</HelpTitleStyle>
+                )
+            }                   
             {
-              pageData && pageData.help.map((helpItem, idx) => {
+              pageData && pageData.helpgroup.help.map((helpItem, idx) => {
               const dataTab = helpData.find(tab => tab.id === `help${idx}`);
                 return (
-                  <React.Fragment>
-                    { 
-                      idx == 0 &&
-                      <HelpTitleStyle>{helpItem.section_title}</HelpTitleStyle>
-                    }
+                  <React.Fragment>                   
                     <DropDown
-                      head={helpItem.helpq}
+                      head={helpItem.question}
                       onSelect={onChange}
                       id={`help${idx}`}
                       selected={helpData && dataTab ? dataTab.value : false}
                     >
-                    <div dangerouslySetInnerHTML={{ __html: helpItem.rich_text_editor }} />
+                    <div dangerouslySetInnerHTML={{ __html: helpItem.answer }} />
+                    
+                  </DropDown>
+                </React.Fragment>
+                )  
+              })
+              
+            }
+        </div>
+        <div>    
+            { 
+                pageData.recommendedgroup.sectiontitle && (
+                <HelpTitleStyle>{pageData.recommendedgroup.sectiontitle}</HelpTitleStyle>
+                )
+            }                   
+            {
+              pageData && pageData.recommendedgroup.recommended.map((item, idx) => {
+              const dataTab = helpData.find(tab => tab.id === `help${idx}`);
+                return (
+                  <React.Fragment>                   
+                    <DropDown
+                      head={item.question}
+                      onSelect={onChange}
+                      id={`help${idx}`}
+                      selected={helpData && dataTab ? dataTab.value : false}
+                    >
+                    <div dangerouslySetInnerHTML={{ __html: item.answer }} />
                     
                   </DropDown>
                 </React.Fragment>
