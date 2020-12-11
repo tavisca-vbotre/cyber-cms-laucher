@@ -13,13 +13,15 @@ const Help = () => {
   const [isLoading, setSelected] = useState(true);
   const [helpData, setHelpData] = useState([]);
   const [pageData, setContentDetails] = useState();
+  const parsedUrl = new URL(window.location.href);
+  const locale = parsedUrl.searchParams.get("locale") ? parsedUrl.searchParams.get("locale") : 'en-us';
 
 
   useEffect(getPageObject, []);
 
   function getPageObject(){
     var Query = Stack.ContentType(config.pageData).Query()
-    .language(config.locale)
+    .language(locale)
     .toJSON()
     .find()
     .then((result) => {

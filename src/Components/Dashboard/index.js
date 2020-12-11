@@ -8,32 +8,37 @@ import Link from '../Link'
 import { useHistory } from 'react-router-dom';
 
 const Dashboard = () => 
-{
+{   
     const history = useHistory();
+    const parsedUrl = new URL(window.location.href);
+    const locale = parsedUrl.searchParams.get("locale") ? parsedUrl.searchParams.get("locale") : 'en-us';
+    
     const [isLoading, setLoadingState] = useState(true);
     const [dashboardObj, setHomePageDetails] = useState(null);
     useEffect(getPageObject, []);
-
     function getPageObject(){
         var Query = Stack.ContentType(dashboardConfig.pageData).Query()
-        .language(dashboardConfig.locale)
+        .language(locale)
         .toJSON()
         .find()
         .then((result) => {
             setHomePageDetails(result[0][0]);
             setLoadingState(!isLoading);
-            document.title = result[0][0].title
+            document.title = result[0][0].title;
+            console.log(locale);
         })
         .catch((error) => {
             console.log(error)
         });
+    
     }
 
     return (
         <div className="wrapper">
         {
-            !isLoading ? (
+            !isLoading ? (                
                 <DashboardContainerStyled>
+                    <body data-pageref="bltcd37e40ba6f16479" data-contenttype="cyber_dashboard" data-locale="en-us"></body>
                     <Header logoUrl={dashboardObj.logo.url} showBanner={dashboardObj.banner.show_banner_image}></Header>
                     <BannerContainerStyled>
                         <BannerStyled withBackground={dashboardObj.banner.show_banner_image} bannerImgUrl={dashboardObj.banner.banner_images[0].url}>
