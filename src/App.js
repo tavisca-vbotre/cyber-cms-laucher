@@ -5,6 +5,7 @@ import { PageBodyStyled, FormTitle, FormButton } from './App.styled';
 import { PageMainContainer, FormContainer, FormInnerContainer } from './Components/Container/Container.styled';
 import Footer from './Components/Footer';
 import Faq from './Components/Faq';
+import EmailViewer from './Components/EmailViewer'
 import Dashboard from './Components/Dashboard';
 
 
@@ -20,15 +21,16 @@ function App() {
         <PageMainContainer>
           <Router>
             <Switch>
+            <Route path="/email">
+              <EmailViewer></EmailViewer>
+            </Route>
             <Route path="/faq">
               <Faq></Faq>
             </Route>
             <Route path="/">
                 <Dashboard></Dashboard>
-            </Route>
-             
+            </Route>             
             </Switch>
-
           </Router>
 
         </PageMainContainer>
